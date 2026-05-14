@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FileNode, NodeType } from '../types';
 import TreeNode from './TreeNode';
 import './FileExplorer.css';
@@ -8,8 +8,23 @@ interface FileExplorerProps {
 }
 
 export default function FileExplorer({ initialData }: FileExplorerProps) {
-  const [nodes, setNodes] = useState<FileNode[]>(initialData);
+  const [nodes, setNodes] = useState<FileNode[]>(() => {
+    const saved = localStorage.getItem('fileExplorerData');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return initialData;
+      }
+    }
+    return initialData;
+  });
+  
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem('fileExplorerData', JSON.stringify(nodes));
+  }, [nodes]);
 
   const generateId = () => Math.random().toString(36).substr(2, 9);
 
