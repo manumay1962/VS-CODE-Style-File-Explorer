@@ -1,0 +1,64 @@
+.tree-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px 6px 0;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.1s;
+}
+
+.tree-node:hover {
+  background-color: #f3f4f6;
+}
+
+.tree-node.selected, .tree-node.selected:hover {
+  background-color: #eff6ff;
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+}
+
+.node-name {
+  font-size: 13px;
+  color: #111827;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.node-input {
+  font-size: 13px;
+  color: #111827;
+  font-weight: 500;
+  border: 1px solid #3b82f6;
+  border-radius: 3px;
+  padding: 2px 6px;
+  height: 24px;
+  width: 150px;
+  outline: none;
+}
+
+.node-actions {
+  display: none;
+  gap: 12px;
+}
+
+.tree-node:hover .node-actions {
+  display: flex;
+}
+
+.node-actions button {
+  font-size: 12px;
+  color: #9ca3af;
+  transition: color 0.1s;
+}
+
+.node-actions button:hover {
+  color: #4b5563;
+}
